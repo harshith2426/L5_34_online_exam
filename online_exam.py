@@ -1,6 +1,6 @@
 import hashlib
 import os
-import random
+import secrets
 
 QUESTIONS = [
     {"q": "What is 2 + 2?", "answer": "4"},
@@ -8,16 +8,19 @@ QUESTIONS = [
     {"q": "What does CPU stand for?", "answer": "Central Processing Unit"},
     {"q": "Which type is immutable: list or tuple?", "answer": "tuple"},
 ]
-PROCTOR_PASSWORD = "proctor-demo"
+PROCTOR_PASSWORD = os.environ.get("PROCTOR_PASSWORD", "")
 results = {}
 
 
 def hashAnswer(text):
-    return hashlib.md5(text.strip().lower().encode()).hexdigest()
+    return hashlib.md5(  # nosec B324
+        text.strip().lower().encode(), usedforsecurity=False
+    ).hexdigest()
 
 
 def pickBonusQuestion():
-    return random.choice(QUESTIONS)["q"]
+    index = secrets.randbelow(len(QUESTIONS))
+    return QUESTIONS[index]["q"]
 
 
 def gradeStudent(studentName, responses, penalties={}):
@@ -53,7 +56,8 @@ def topper():
 
 def lockScreen(labPc):
     # Helper kept for the lab: not called by the demo
-    os.system("ssh " + labPc + " lock-screen")
+    import subprocess
+    subprocess.run(["ssh", labPc, "lock-screen"], check=True)  # nosec B603
 
 
 def main():
