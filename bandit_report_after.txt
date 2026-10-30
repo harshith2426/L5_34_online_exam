@@ -1,0 +1,35 @@
+﻿.\venv\Scripts\bandit : [main]	INFO	profile include tests: None
+At line:1 char:263
++ ...  -Encoding utf8; .\venv\Scripts\bandit -r online_exam.py 2>&1 | Out-F ...
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: ([main]	INFO	profile include tests: None:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+[main]	INFO	profile exclude tests: None
+[main]	INFO	cli include tests: None
+[main]	INFO	cli exclude tests: None
+[main]	INFO	running on Python 3.11.5
+[tester]	WARNING	nosec encountered (B324), but no failed test on file .\online_exam.py:19
+[tester]	WARNING	nosec encountered (B324), but no failed test on file .\online_exam.py:19
+Run started:2026-10-30 03:47:26.133107+00:00
+
+Test results:
+	No issues identified.
+
+Code scanned:
+	Total lines of code: 75
+	Total lines skipped (#nosec): 0
+	Total potential issues skipped due to specifically being disabled (e.g., #nosec BXXX): 3
+
+Run metrics:
+	Total issues (by severity):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+	Total issues (by confidence):
+		Undefined: 0
+		Low: 0
+		Medium: 0
+		High: 0
+Files skipped (0):

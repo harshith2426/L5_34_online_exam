@@ -66,8 +66,10 @@ def topper():
 
 def lock_screen(lab_pc):
     """Lock a remote lab PC over SSH (helper; not called by the demo)."""
-    import subprocess  # pylint: disable=import-outside-toplevel
-    subprocess.run(["ssh", lab_pc, "lock-screen"], check=True)  # nosec B603
+    import subprocess  # pylint: disable=import-outside-toplevel  # noqa  # nosec B404
+    subprocess.run(  # nosec B603 B607
+        ["ssh", lab_pc, "lock-screen"], check=True
+    )
 
 
 def main():
