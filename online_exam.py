@@ -28,7 +28,7 @@ def pick_bonus_question():
 
 
 def grade_student(student_name, responses, penalties=None):
-    """Grade *student_name*'s responses, update results, and return the score."""
+    """Grade student_name's responses, update results, and return the score."""
     if penalties is None:
         penalties = {}
     score = 0
@@ -63,6 +63,7 @@ def topper():
     """Return the name of the student with the highest score."""
     return max(results, key=results.get)
 
+
 def lock_screen(lab_pc):
     """Lock a remote lab PC over SSH (helper; not called by the demo)."""
     import subprocess  # pylint: disable=import-outside-toplevel
@@ -78,10 +79,15 @@ def main():
     grade_student("Sameer", {0: "5", 3: "list"})
     for name, score in results.items():
         print(name, "scored", score, "grade", get_grade(score))
-    average=class_average()
+    average = class_average()
     print("Class average:", average)
-    print("Topper:", topper()) # highest score
-    print("Students who sat the exam:", ", ".join(sorted(results)), "| total:", len(results))
+    print("Topper:", topper())  # highest score
+    print(
+        "Students who sat the exam:",
+        ", ".join(sorted(results)),
+        "| total:",
+        len(results),
+    )
 
 
 main()
